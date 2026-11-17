@@ -1,1 +1,19 @@
+name: PS2 core smoke test
 
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  core-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Configure CMake
+        run: cmake -S . -B build
+      - name: Build smoke test
+        run: cmake --build build --parallel
+      - name: Run smoke test
+        run: ./build/ps2core_smoke
