@@ -1,8 +1,8 @@
 #pragma once
 #include <array>
 #include <cstdint>
-#include <vector>
 #include <string>
+#include <vector>
 
 class PS2Core {
 public:
@@ -19,11 +19,14 @@ private:
     uint32_t pc;
     uint32_t next_pc;
     bool in_delay_slot;
-    std::array<uint32_t, 32> gpr;
+    std::array<uint32_t, 32> gpr{};
+    uint32_t hi;
+    uint32_t lo;
 
-    std::vector<uint8_t> ram;          // 32 MB Main RAM
-    std::vector<uint8_t> bios;         // 4 MB BIOS ROM
-    std::vector<uint32_t> framebuffer; // 640x448 RGBA Pixels
+    std::vector<uint8_t> ram;
+    std::vector<uint8_t> bios;
+    std::vector<uint8_t> scratchpad;
+    std::vector<uint32_t> framebuffer;
 
     uint32_t read32(uint32_t vaddr);
     void write32(uint32_t vaddr, uint32_t value);
