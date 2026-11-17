@@ -1,4 +1,5 @@
 #pragma once
+#include <array>
 #include <cstdint>
 #include <vector>
 #include <string>
@@ -18,7 +19,7 @@ private:
     uint32_t pc;
     uint32_t next_pc;
     bool in_delay_slot;
-    uint64_t gpr;
+    std::array<uint32_t, 32> gpr;
 
     std::vector<uint8_t> ram;          // 32 MB Main RAM
     std::vector<uint8_t> bios;         // 4 MB BIOS ROM
